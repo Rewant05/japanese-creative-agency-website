@@ -1,29 +1,69 @@
-import { useLayoutEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { siteData } from '../config/siteData';
 
-gsap.registerPlugin(ScrollTrigger);
+const optimizedImageUrl = (url: string, width: number) =>
+  url
+    .replace('q=80', 'q=45')
+    .replace('w=1600', `w=${width}`)
+    .replace('auto=format', 'fm=webp');
+
+const DeferredWorkImage = ({ url }: { url: string }) => {
+  const imageRef = useRef<HTMLImageElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    const image = imageRef.current;
+    if (!image || shouldLoad) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      setShouldLoad(true);
+      observer.disconnect();
+    }, { rootMargin: '300px' });
+
+    observer.observe(image);
+    return () => observer.disconnect();
+  }, [shouldLoad]);
+
+  return (
+    <img
+      ref={imageRef}
+      className="work-img"
+      src={shouldLoad ? optimizedImageUrl(url, 800) : undefined}
+      srcSet={shouldLoad
+        ? `${optimizedImageUrl(url, 400)} 400w, ${optimizedImageUrl(url, 600)} 600w, ${optimizedImageUrl(url, 800)} 800w`
+        : undefined}
+      sizes="(max-width: 768px) 100vw, 70vw"
+      alt=""
+      width="960"
+      height="600"
+      decoding="async"
+      fetchPriority="low"
+      style={styles.workImg}
+    />
+  );
+};
 
 const Home = () => {
   const mainRef = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
-      // 1. Hero Animations (Robust fromTo for StrictMode safety)
-      gsap.fromTo('.hero-anim', 
-        { y: 100, opacity: 0 },
-        { 
-          y: 0, 
-          opacity: 1, 
-          duration: 1.2, 
-          stagger: 0.15, 
-          ease: 'power4.out',
-          delay: 0.1 
-        }
-      );
+  useEffect(() => {
+    let ctx: { revert: () => void } | undefined;
+    let cancelled = false;
 
+    // GSAP is enhancement-only. Loading it after the first paint keeps the
+    // hero text (the LCP element) visible and out of the critical JS path.
+    const initializeAnimations = async () => {
+      const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
+        import('gsap'),
+        import('gsap/ScrollTrigger'),
+      ]);
+
+      if (cancelled || !mainRef.current) return;
+
+      gsap.registerPlugin(ScrollTrigger);
+      ctx = gsap.context(() => {
       // Parallax hero shapes on scroll
       gsap.to('.hero-shape', {
         y: (i) => (i === 0 ? -300 : -500),
@@ -35,11 +75,6 @@ const Home = () => {
           scrub: 1
         }
       });
-
-      gsap.fromTo('.hero-shape',
-        { scale: 0, rotation: -45, opacity: 0 },
-        { scale: 1, rotation: 0, opacity: 1, duration: 1.5, ease: 'elastic.out(1, 0.5)', delay: 0.5 }
-      );
 
       // 2. Marquee Text
       gsap.to('.marquee-inner', {
@@ -54,8 +89,8 @@ const Home = () => {
       });
 
       // 3. Vertical Parallax Works
-      const workItems = gsap.utils.toArray('.work-parallax-item');
-      workItems.forEach((item: any) => {
+      const workItems = gsap.utils.toArray<HTMLElement>('.work-parallax-item');
+      workItems.forEach((item) => {
         const img = item.querySelector('.work-img');
         const text = item.querySelector('.work-text-block');
 
@@ -121,9 +156,36 @@ const Home = () => {
         }
       });
 
-    }, mainRef);
+      }, mainRef);
+    };
 
-    return () => ctx.revert();
+    let started = false;
+    const interactionEvents: Array<keyof WindowEventMap> = [
+      'pointerdown',
+      'keydown',
+      'wheel',
+      'touchstart',
+    ];
+    const removeInteractionListeners = () => {
+      interactionEvents.forEach((eventName) => {
+        window.removeEventListener(eventName, startAnimations);
+      });
+    };
+    const startAnimations = () => {
+      if (started) return;
+      started = true;
+      removeInteractionListeners();
+      void initializeAnimations();
+    };
+    interactionEvents.forEach((eventName) => {
+      window.addEventListener(eventName, startAnimations, { once: true, passive: true });
+    });
+
+    return () => {
+      cancelled = true;
+      removeInteractionListeners();
+      ctx?.revert();
+    };
   }, []);
 
   return (
@@ -173,7 +235,7 @@ const Home = () => {
       </section>
 
       {/* 3. VERTICAL PARALLAX WORKS */}
-      <section style={styles.worksSection}>
+      <section className="below-fold" style={styles.worksSection}>
         <div className="container">
           <div style={{ marginBottom: '6rem', overflow: 'hidden' }}>
             <h2 className="text-jumbo fw-black" style={{ textTransform: 'uppercase', borderBottom: '2px solid var(--color-border)', paddingBottom: '1rem' }}>
@@ -190,13 +252,7 @@ const Home = () => {
                 paddingTop: index !== 0 ? '10rem' : '0'
               }}>
                 <div style={styles.workImgWrapper} className="hover-target">
-                  <div 
-                    className="work-img"
-                    style={{
-                      ...styles.workImg,
-                      backgroundImage: `url(${work.imageUrl})`
-                    }}
-                  />
+                  <DeferredWorkImage url={work.imageUrl} />
                   <div style={styles.workOverlay}></div>
                 </div>
                 <div className="work-text-block" style={{
@@ -221,7 +277,7 @@ const Home = () => {
       </section>
 
       {/* 4. ASYMMETRIC SERVICES */}
-      <section className="services-section" style={styles.servicesSection}>
+      <section className="services-section below-fold" style={styles.servicesSection}>
         <div className="container">
           <div style={styles.servicesHeader}>
             <h2 className="text-jumbo fw-black service-anim-block" style={{ textTransform: 'uppercase' }}>Expertise</h2>
@@ -248,7 +304,7 @@ const Home = () => {
       </section>
 
       {/* 5. FOOTER CTA */}
-      <section style={styles.ctaSection}>
+      <section className="below-fold" style={styles.ctaSection}>
         <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', textAlign: 'center' }}>
           <h2 className="text-jumbo fw-black" style={{ color: 'var(--color-inverse-text)', textTransform: 'uppercase', marginBottom: '3rem' }}>
             Have a project?
@@ -385,8 +441,9 @@ const styles: Record<string, React.CSSProperties> = {
     left: 0,
     width: '100%',
     height: '140%', // extra height for parallax
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
+    objectFit: 'cover',
+    objectPosition: 'center',
+    display: 'block',
     filter: 'grayscale(100%)',
     opacity: 0.8,
   },

@@ -4,7 +4,7 @@ import { siteData } from '../config/siteData';
 
 const Services = () => {
   useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       gsap.from('.service-block', {
         y: 50,
         opacity: 0,

@@ -1,14 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { siteData } from '../config/siteData';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
-
-  useEffect(() => {
-    setIsOpen(false);
-  }, [location]);
 
   // Prevent scroll when menu is open
   useEffect(() => {
@@ -38,7 +33,7 @@ const Navbar = () => {
     <>
       <header style={styles.header}>
         <div className="container" style={styles.navContainer}>
-          <Link to="/" style={styles.logo}>
+          <Link to="/" style={styles.logo} onClick={() => setIsOpen(false)}>
             <span style={styles.logoText}>{siteData.studioName}</span>
           </Link>
 
@@ -72,7 +67,7 @@ const Navbar = () => {
                   transform: isOpen ? 'translateY(0)' : 'translateY(100%)',
                   transition: `transform 0.5s cubic-bezier(0.19, 1, 0.22, 1) ${0.2 + index * 0.1}s`
                 }}>
-                  <Link to={link.path} style={styles.mobileNavLink}>
+                  <Link to={link.path} style={styles.mobileNavLink} onClick={() => setIsOpen(false)}>
                     {link.name}
                   </Link>
                 </div>

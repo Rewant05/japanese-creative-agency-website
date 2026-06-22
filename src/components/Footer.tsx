@@ -3,10 +3,10 @@ import { siteData } from '../config/siteData';
 
 const Footer = () => {
   return (
-    <footer style={styles.footer}>
+    <footer className="below-fold" style={styles.footer}>
       <div className="marquee-container" style={{ marginBottom: '4rem', padding: '2rem 0' }}>
         <div className="marquee-content">
-          {[...Array(10)].map((_, i) => (
+          {[...Array(4)].map((_, i) => (
             <span key={i} className="marquee-item">{siteData.studioName} — {siteData.tagline} — </span>
           ))}
         </div>

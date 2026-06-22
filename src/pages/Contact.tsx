@@ -4,7 +4,7 @@ import { siteData } from '../config/siteData';
 
 const Contact = () => {
   useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       gsap.from('.contact-anim', {
         y: 50,
         opacity: 0,

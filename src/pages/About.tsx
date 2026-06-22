@@ -6,7 +6,7 @@ const About = () => {
   const comp = useRef(null);
   
   useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       gsap.from('.fade-up', {
         y: 50,
         opacity: 0,

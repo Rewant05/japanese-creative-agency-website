@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect, useState, lazy, Suspense } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
-import LoadingScreen from './components/LoadingScreen';
+import Home from './pages/Home';
 
-// Lazy load pages for code splitting and better performance
-const Home = lazy(() => import('./pages/Home'));
+// Keep secondary routes out of the initial bundle. The home page is imported
+// eagerly so the first visit does not wait on a second JavaScript request.
 const About = lazy(() => import('./pages/About'));
 const Works = lazy(() => import('./pages/Works'));
 const Services = lazy(() => import('./pages/Services'));
@@ -23,33 +23,25 @@ function ScrollToTop() {
 }
 
 function App() {
-  const [loading, setLoading] = useState(true);
-
   return (
     <Router>
       <ScrollToTop />
       <CustomCursor />
-      {loading ? (
-        <LoadingScreen onComplete={() => setLoading(false)} />
-      ) : (
-        <>
-          <Navbar />
-          <main>
-            <Suspense fallback={null}>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/works" element={<Works />} />
-                <Route path="/services" element={<Services />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                <Route path="/terms-of-use" element={<TermsOfUse />} />
-              </Routes>
-            </Suspense>
-          </main>
-          <Footer />
-        </>
-      )}
+      <Navbar />
+      <main>
+        <Suspense fallback={null}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/works" element={<Works />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-use" element={<TermsOfUse />} />
+          </Routes>
+        </Suspense>
+      </main>
+      <Footer />
     </Router>
   );
 }

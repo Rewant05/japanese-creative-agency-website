@@ -4,7 +4,7 @@ import { siteData } from '../config/siteData';
 
 const Works = () => {
   useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
       gsap.from('.work-item', {
         y: 100,
         opacity: 0,
