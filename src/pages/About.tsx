@@ -22,7 +22,7 @@ const About = () => {
     <div ref={comp} className="page-enter-active" style={styles.page}>
       <div className="container" style={{ paddingTop: '150px', paddingBottom: '150px' }}>
         <h1 className="text-jumbo fw-black fade-up" style={{ marginBottom: '6rem', textTransform: 'uppercase', borderBottom: '1px solid var(--color-border)', paddingBottom: '2rem' }}>
-          ABOUT
+          私たちについて
         </h1>
         
         <div className="about-grid" style={styles.grid}>
@@ -33,7 +33,7 @@ const About = () => {
             </p>
           </div>
           <div className="about-right fade-up" style={styles.right}>
-            <h2 style={{fontSize: '2rem', marginBottom: '2rem', fontWeight: 900}}>PHILOSOPHY</h2>
+            <h2 style={{fontSize: '2rem', marginBottom: '2rem', fontWeight: 900}}>フィロソフィー</h2>
             <p style={styles.paragraph}>
               私たちは、きれいに整えるだけのデザインを目的にしていません。少し引っかかる余白、視線が止まる文字、記憶に残る動き。その小さな違和感から、ブランドの輪郭をつくります。
             </p>
@@ -45,17 +45,17 @@ const About = () => {
             </p>
 
             <div style={styles.infoBlock}>
-              <h3 style={styles.infoTitle}>STUDIO INFO</h3>
+              <h3 style={styles.infoTitle}>スタジオ情報</h3>
               <div style={styles.infoRow}>
-                <span style={styles.infoLabel}>Name</span>
+                <span style={styles.infoLabel}>名前</span>
                 <span>{siteData.studioName}</span>
               </div>
               <div style={styles.infoRow}>
-                <span style={styles.infoLabel}>Address</span>
+                <span style={styles.infoLabel}>住所</span>
                 <span>{siteData.address}</span>
               </div>
               <div style={styles.infoRow}>
-                <span style={styles.infoLabel}>Contact</span>
+                <span style={styles.infoLabel}>連絡先</span>
                 <span>{siteData.email} <br/> {siteData.phone}</span>
               </div>
             </div>

@@ -13,7 +13,7 @@ const Footer = () => {
       </div>
 
       <div className="container">
-        <div style={styles.grid}>
+        <div className="footer-grid" style={styles.grid}>
           <div style={styles.col}>
             <h2 style={styles.logo}>{siteData.studioName}</h2>
             <p style={styles.address}>{siteData.address}</p>
@@ -27,10 +27,10 @@ const Footer = () => {
           
           <div style={styles.col}>
             <ul style={styles.linkList}>
-              <li><Link to="/about" className="hover-target">About</Link></li>
-              <li><Link to="/works" className="hover-target">Works</Link></li>
-              <li><Link to="/services" className="hover-target">Services</Link></li>
-              <li><Link to="/contact" className="hover-target">Contact</Link></li>
+              <li><Link to="/about" className="hover-target">私たちについて</Link></li>
+              <li><Link to="/works" className="hover-target">実績</Link></li>
+              <li><Link to="/services" className="hover-target">サービス</Link></li>
+              <li><Link to="/contact" className="hover-target">お問い合わせ</Link></li>
             </ul>
           </div>
           
@@ -42,11 +42,11 @@ const Footer = () => {
           </div>
         </div>
 
-        <div style={styles.bottom}>
+        <div className="footer-bottom" style={styles.bottom}>
           <p>&copy; {new Date().getFullYear()} {siteData.studioName} All rights reserved.</p>
           <div style={styles.legal}>
-            <Link to="/privacy-policy" className="hover-target">Privacy Policy</Link>
-            <Link to="/terms-of-use" className="hover-target">Terms of Use</Link>
+            <Link to="/privacy-policy" className="hover-target">プライバシーポリシー</Link>
+            <Link to="/terms-of-use" className="hover-target">利用規約</Link>
           </div>
         </div>
       </div>

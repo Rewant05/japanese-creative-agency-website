@@ -20,10 +20,10 @@ const Contact = () => {
     <div className="page-enter-active" style={styles.page}>
       <div className="container" style={{ paddingTop: '150px', paddingBottom: '100px' }}>
         <h1 className="text-jumbo fw-black contact-anim" style={{ marginBottom: '4rem', textTransform: 'uppercase' }}>
-          CONTACT
+          お問い合わせ
         </h1>
 
-        <div style={styles.grid}>
+          <div className="contact-grid" style={styles.grid}>
           <div style={styles.left} className="contact-anim">
             <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>制作のご相談</h2>
             <p style={{ marginBottom: '3rem', opacity: 0.8 }}>
@@ -33,7 +33,7 @@ const Contact = () => {
             </p>
 
             <div style={styles.infoBlock}>
-              <h3 style={styles.infoTitle}>STUDIO INFO</h3>
+              <h3 style={styles.infoTitle}>スタジオ情報</h3>
               <div style={styles.infoRow}>
                 <span style={styles.infoLabel}>Email</span>
                 <a href={`mailto:${siteData.email}`} className="hover-target">{siteData.email}</a>
@@ -72,7 +72,7 @@ const Contact = () => {
                 </select>
               </div>
 
-              <div style={styles.formRow}>
+              <div className="form-row" style={styles.formRow}>
                 <div style={styles.formGroup}>
                   <label style={styles.label}>貴社名</label>
                   <input type="text" style={styles.input} placeholder="株式会社◯◯" />
@@ -83,7 +83,7 @@ const Contact = () => {
                 </div>
               </div>
 
-              <div style={styles.formRow}>
+              <div className="form-row" style={styles.formRow}>
                 <div style={styles.formGroup}>
                   <label style={styles.label}>メールアドレス</label>
                   <input type="email" style={styles.input} placeholder="hello@example.com" />
@@ -94,7 +94,7 @@ const Contact = () => {
                 </div>
               </div>
 
-              <div style={styles.formRow}>
+              <div className="form-row" style={styles.formRow}>
                 <div style={styles.formGroup}>
                   <label style={styles.label}>ご予算感</label>
                   <select style={styles.input}>

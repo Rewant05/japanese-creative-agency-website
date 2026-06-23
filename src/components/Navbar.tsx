@@ -22,11 +22,11 @@ const Navbar = () => {
   };
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Works', path: '/works' },
-    { name: 'Services', path: '/services' },
-    { name: 'Contact', path: '/contact' }
+    { name: 'ホーム', path: '/' },
+    { name: '私たちについて', path: '/about' },
+    { name: '実績', path: '/works' },
+    { name: 'サービス', path: '/services' },
+    { name: 'お問い合わせ', path: '/contact' }
   ];
 
   return (
@@ -52,7 +52,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button style={styles.menuBtn} onClick={toggleMenu} className="hover-target mobile-btn">
-            {isOpen ? 'CLOSE' : 'MENU'}
+            {isOpen ? '閉じる' : 'メニュー'}
           </button>
         </div>
       </header>

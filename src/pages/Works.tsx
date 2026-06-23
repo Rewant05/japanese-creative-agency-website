@@ -20,7 +20,7 @@ const Works = () => {
     <div className="page-enter-active" style={styles.page}>
       <div className="container" style={{ paddingTop: '150px', paddingBottom: '100px' }}>
         <h1 className="text-jumbo fw-black" style={{ marginBottom: '4rem', textTransform: 'uppercase' }}>
-          WORKS
+          実績
         </h1>
         
         <div style={styles.gallery}>
@@ -33,7 +33,7 @@ const Works = () => {
               <div style={styles.imageContainer}>
                 <div style={{...styles.image, backgroundImage: `url(${work.imageUrl})`}} className="work-image" />
                 <div style={styles.overlay}>
-                  <span style={styles.viewText}>VIEW PROJECT</span>
+                  <span style={styles.viewText}>プロジェクトを見る</span>
                 </div>
               </div>
               <div style={styles.meta}>

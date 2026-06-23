@@ -20,10 +20,10 @@ const Services = () => {
     <div className="page-enter-active" style={styles.page}>
       <div className="container" style={{ paddingTop: '150px', paddingBottom: '100px' }}>
         <h1 className="text-jumbo fw-black" style={{ marginBottom: '4rem', textTransform: 'uppercase' }}>
-          SERVICES
+          サービス
         </h1>
         
-        <div style={styles.grid}>
+        <div className="services-grid" style={styles.grid}>
           {siteData.services.map((service, idx) => (
             <div key={service.id} className="service-block" style={{
               ...styles.serviceBlock,
@@ -38,13 +38,13 @@ const Services = () => {
               
               <div style={styles.details}>
                 <div style={styles.detailGroup}>
-                  <strong style={styles.detailLabel}>Deliverables:</strong>
+                  <strong style={styles.detailLabel}>納品物:</strong>
                   <ul style={styles.list}>
                     {service.deliverables.map(item => <li key={item} style={styles.listItem}>- {item}</li>)}
                   </ul>
                 </div>
                 <div style={styles.detailGroup}>
-                  <strong style={styles.detailLabel}>For:</strong>
+                  <strong style={styles.detailLabel}>対象:</strong>
                   <p style={{fontSize: '0.875rem'}}>{service.clientType}</p>
                 </div>
               </div>

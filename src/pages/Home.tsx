@@ -196,12 +196,12 @@ const Home = () => {
           <div style={styles.heroContent}>
             <div style={{ overflow: 'hidden' }}>
               <h1 className="hero-anim text-jumbo fw-black" style={{ lineHeight: 1, textTransform: 'uppercase' }}>
-                Unseen
+                見えない
               </h1>
             </div>
             <div style={{ overflow: 'hidden' }}>
               <h1 className="hero-anim text-jumbo fw-black" style={{ lineHeight: 1, textTransform: 'uppercase', paddingLeft: '10vw' }}>
-                Boundaries.
+                境界。
               </h1>
             </div>
             <div style={{ overflow: 'hidden', marginTop: '3rem' }}>
@@ -212,7 +212,7 @@ const Home = () => {
             </div>
             <div style={{ overflow: 'hidden', marginTop: '3rem' }}>
               <Link to="/contact" className="hero-anim btn btn-solid hover-target" style={{ display: 'inline-block' }}>
-                START A PROJECT
+                プロジェクトを始める
               </Link>
             </div>
           </div>
@@ -220,7 +220,7 @@ const Home = () => {
           <div className="hero-shape" style={styles.heroShape1}></div>
           <div className="hero-shape" style={styles.heroShape2}></div>
           <div style={styles.scrollDown}>
-            SCROLL DOWN ↓
+            スクロール ↓
           </div>
         </div>
       </section>
@@ -228,9 +228,9 @@ const Home = () => {
       {/* 2. MARQUEE STATEMENT */}
       <section className="marquee-section" style={styles.marqueeSection}>
         <div className="marquee-inner" style={styles.marqueeInner}>
-          <span style={styles.marqueeText}>WE SHAPE THE UNSEEN. EMBRACE DISCOMFORT. </span>
-          <span style={styles.marqueeText}>WE SHAPE THE UNSEEN. EMBRACE DISCOMFORT. </span>
-          <span style={styles.marqueeText}>WE SHAPE THE UNSEEN. EMBRACE DISCOMFORT. </span>
+          <span style={styles.marqueeText}>見えないものを形に。違和感を楽しむ。 </span>
+          <span style={styles.marqueeText}>見えないものを形に。違和感を楽しむ。 </span>
+          <span style={styles.marqueeText}>見えないものを形に。違和感を楽しむ。 </span>
         </div>
       </section>
 
@@ -239,7 +239,7 @@ const Home = () => {
         <div className="container">
           <div style={{ marginBottom: '6rem', overflow: 'hidden' }}>
             <h2 className="text-jumbo fw-black" style={{ textTransform: 'uppercase', borderBottom: '2px solid var(--color-border)', paddingBottom: '1rem' }}>
-              Selected Works
+              実績
             </h2>
           </div>
 
@@ -271,7 +271,7 @@ const Home = () => {
           </div>
 
           <div style={{ textAlign: 'center', marginTop: '8rem' }}>
-            <Link to="/works" className="btn hover-target">VIEW ALL WORKS</Link>
+            <Link to="/works" className="btn hover-target">すべての実績を見る</Link>
           </div>
         </div>
       </section>
@@ -280,13 +280,13 @@ const Home = () => {
       <section className="services-section below-fold" style={styles.servicesSection}>
         <div className="container">
           <div style={styles.servicesHeader}>
-            <h2 className="text-jumbo fw-black service-anim-block" style={{ textTransform: 'uppercase' }}>Expertise</h2>
+            <h2 className="text-jumbo fw-black service-anim-block" style={{ textTransform: 'uppercase' }}>専門性</h2>
             <p className="service-anim-block" style={{ maxWidth: '400px', fontSize: '1rem', opacity: 0.8 }}>
               ブランドの価値を最大化するための、多角的なクリエイティブアプローチ。
             </p>
           </div>
 
-          <div style={styles.servicesGrid}>
+          <div className="services-grid" style={styles.servicesGrid}>
             <div className="service-anim-block" style={styles.serviceBox1}>
               <h3 style={styles.serviceTitle}>Branding</h3>
               <p style={styles.serviceDesc}>コアバリューの抽出から視覚・言語化まで、ブランドの土台を構築。</p>
@@ -307,10 +307,10 @@ const Home = () => {
       <section className="below-fold" style={styles.ctaSection}>
         <div className="container" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', textAlign: 'center' }}>
           <h2 className="text-jumbo fw-black" style={{ color: 'var(--color-inverse-text)', textTransform: 'uppercase', marginBottom: '3rem' }}>
-            Have a project?
+            プロジェクトをお考えですか？
           </h2>
           <Link to="/contact" className="hover-target huge-contact-btn" style={styles.hugeContactBtn}>
-            LET'S TALK
+            ご相談はこちら
           </Link>
         </div>
       </section>
@@ -331,8 +331,8 @@ const Home = () => {
             text-align: left !important;
           }
           .services-section .container > div {
-            display: flex;
-            flex-direction: column;
+            display: flex !important;
+            flex-direction: column !important;
           }
           .service-anim-block {
             margin-top: 2rem !important;
