@@ -33,7 +33,16 @@ const Navbar = () => {
     <>
       <header style={styles.header}>
         <div className="container" style={styles.navContainer}>
-          <Link to="/" style={styles.logo} onClick={() => setIsOpen(false)}>
+          <Link 
+            to="/" 
+            style={{
+              ...styles.logo, 
+              opacity: isOpen ? 0 : 1, 
+              visibility: isOpen ? 'hidden' : 'visible',
+              transition: 'opacity 0.3s, visibility 0.3s'
+            }} 
+            onClick={() => setIsOpen(false)}
+          >
             <span style={styles.logoText}>{siteData.studioName}</span>
           </Link>
 

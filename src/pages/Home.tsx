@@ -288,15 +288,15 @@ const Home = () => {
 
           <div className="services-grid" style={styles.servicesGrid}>
             <div className="service-anim-block" style={styles.serviceBox1}>
-              <h3 style={styles.serviceTitle}>Branding</h3>
+              <h3 style={styles.serviceTitle}>ブランディング</h3>
               <p style={styles.serviceDesc}>コアバリューの抽出から視覚・言語化まで、ブランドの土台を構築。</p>
             </div>
             <div className="service-anim-block" style={styles.serviceBox2}>
-              <h3 style={styles.serviceTitle}>Digital</h3>
+              <h3 style={styles.serviceTitle}>デジタル</h3>
               <p style={styles.serviceDesc}>Webサイトやアプリケーションなど、記憶に残るインタラクティブ体験の設計。</p>
             </div>
             <div className="service-anim-block" style={styles.serviceBox3}>
-              <h3 style={styles.serviceTitle}>Identity</h3>
+              <h3 style={styles.serviceTitle}>アイデンティティ</h3>
               <p style={styles.serviceDesc}>ロゴ、タイポグラフィ、カラーシステムなど、一貫性のある視覚設計。</p>
             </div>
           </div>
@@ -493,6 +493,7 @@ const styles: Record<string, React.CSSProperties> = {
     padding: '3rem',
     border: '1px solid var(--color-border)',
     backgroundColor: 'var(--color-bg)',
+    color: 'var(--color-text)',
   },
   serviceBox2: {
     gridColumn: '7 / 13',
@@ -506,6 +507,7 @@ const styles: Record<string, React.CSSProperties> = {
     padding: '3rem',
     border: '1px solid var(--color-border)',
     backgroundColor: 'var(--color-bg)',
+    color: 'var(--color-text)',
     marginTop: '-2rem',
     zIndex: 2,
   },

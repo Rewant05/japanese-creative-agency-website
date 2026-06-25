@@ -5,7 +5,7 @@ const TermsOfUse = () => {
     <div className="page-enter-active" style={styles.page}>
       <div className="container" style={{ paddingTop: '150px', paddingBottom: '100px', maxWidth: '800px' }}>
         <h1 className="text-jumbo fw-black" style={{ marginBottom: '4rem', textTransform: 'uppercase' }}>
-          TERMS OF USE
+          利用規約
         </h1>
         
         <div style={styles.content}>
